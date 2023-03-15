@@ -22,6 +22,7 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
+// Route vers la page test du template Tailwind
 Route::get('/test', function () {
     return view("test");
 });
