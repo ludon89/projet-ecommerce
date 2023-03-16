@@ -19,17 +19,15 @@ use App\Http\Controllers\ProfileController;
 //     return view('welcome');
 // });
 
+// Accueil
 Route::get('/', [ProductController::class, 'index'])->name('index');
 
+// Dashboard admin
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
-// Route vers la page test du template Tailwind
-Route::get('/test', function () {
-    return view("test");
-})->name("test");
-
+// Breeze
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
@@ -39,5 +37,11 @@ Route::middleware('auth')->group(function () {
 
 // Routes ressources
 Route::resource("products", ProductController::class);
+
+
+// Tests
+Route::get('/test', function () {
+    return view("test");
+})->name("test");
 
 require __DIR__ . '/auth.php';
