@@ -23,9 +23,9 @@ use App\Http\Controllers\ProfileController;
 Route::get('/', [ProductController::class, 'index'])->name('index');
 
 // Dashboard admin
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+Route::get('/dashboard', [ProductController::class, 'admin_index'])
+    // ->middleware(['auth', 'verified'])
+    ->name('dashboard');
 
 // Breeze
 Route::middleware('auth')->group(function () {
