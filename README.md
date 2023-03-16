@@ -1,6 +1,6 @@
 Travail réalisé en groupe
 
-##Consignes
+## Consignes
 
 Créer un projet Laravel de vente en ligne pour le type de produit que vous souhaiter. Les fonctionnalités minimales attendues sont : la gestion des utilisateur·ice·s, la gestion du panier, l'affichage des produits (et leur mise au panier), un backoffice pour permettre à un·e administrateur·ice d'ajouter/supprimer/gérer les produits.
 
