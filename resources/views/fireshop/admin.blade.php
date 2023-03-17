@@ -20,7 +20,11 @@
         <hr>
         <br>
         @foreach ($products as $product)
-            <h2>{{ $product->name }}</h2>
+            <h2>
+                <a href="{{ route('products.show', $product) }}">
+                    {{ $product->name }}
+                </a>
+            </h2>
             <img src="{{ $product->picture }}" alt="image produit">
             <p>{{ $product->description }}</p>
             <p>{{ $product->price }} €</p>
