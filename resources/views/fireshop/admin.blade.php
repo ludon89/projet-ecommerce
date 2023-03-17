@@ -11,6 +11,24 @@
     </header>
 
     <main class="my-8">
+        <div class="w-full text-gray-700 text-2xl font-semibold">
+            Produits
+        </div>
+        <div class="w-full text-gray-700 text-xl font-semibold">
+            Ajouter un produit
+        </div>
+        <hr>
+        <br>
+        @foreach ($products as $product)
+            <h2>{{ $product->name }}</h2>
+            <img src="{{ $product->picture }}" alt="image produit">
+            <p>{{ $product->description }}</p>
+            <p>{{ $product->price }} €</p>
+            <p>Modifier</p>
+            <p>Supprimer</p>
+            <hr>
+        @endforeach
+
         <div class="container mx-auto px-6">
             <div class="mt-16">
                 <h3 class="text-gray-600 text-2xl font-medium">More Products</h3>
