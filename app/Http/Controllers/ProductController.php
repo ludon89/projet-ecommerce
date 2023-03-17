@@ -18,7 +18,7 @@ class ProductController extends Controller
 
     public function admin_index(): View
     {
-        return view("fireshop.dashboard");
+        return view("fireshop.admin");
     }
 
     /**
