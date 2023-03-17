@@ -106,7 +106,7 @@
 
 <div class="container mx-auto px-6 py-3 ">
     {{-- Navigation links --}}
-    <nav :class="isOpen ? '' : 'hidden'" class="sm:flex sm:justify-center sm:items-center mt-4">
+    <nav :class="isOpen ? '' : 'hidden'" class="sm:flex sm:justify-around sm:items-center mt-4">
         <!-- Logo -->
         <div class="shrink-0 flex items-center">
             <a href="{{ url('/home') }}">
@@ -122,23 +122,30 @@
                 {{ __('Catalogue') }}
             </x-nav-link>
 
-            @if (Route::has('login'))
-                @guest
-                    <x-nav-link :href="route('login')" :active="request()->routeIs('login')">
-                        {{ __('Log In') }}
-                    </x-nav-link>
+            @guest
+                <x-nav-link :href="route('login')" :active="request()->routeIs('login')">
+                    {{ __('Log In') }}
+                </x-nav-link>
                    
-                    <x-nav-link :href="route('register')" :active="request()->routeIs('register')">
-                        {{ __('Register') }}
-                    </x-nav-link>
-                @endguest
+                <x-nav-link :href="route('register')" :active="request()->routeIs('register')">
+                    {{ __('Register') }}
+                </x-nav-link>
+            @endguest
 
-                @auth
-                    <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
-                        {{ __('Dashboard') }}
-                    </x-nav-link>
-                @endauth
-            @endif
+            {{-- Condition additionnelle sur l'authentification : si la personne connectée (user) est l'administrateur.rice ('is_admin' === 1),
+            alors le menu "dashboard" s'affichera dans la barre de navigation. --}}
+            {{-- @if(Auth::attempt(['is_admin' => 1]))
+                <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
+                    {{ __('Dashboard') }}
+                </x-nav-link>
+            @endif --}}
+
+            @auth
+                <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
+                    {{ __('Dashboard') }}
+                </x-nav-link>
+            @endauth
+
         </div>
     </nav>
 
