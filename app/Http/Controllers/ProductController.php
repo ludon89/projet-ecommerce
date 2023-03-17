@@ -3,8 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Product;
-use Illuminate\Http\Request;
 use Illuminate\View\View;
+use Illuminate\Http\Request;
+use Illuminate\Http\RedirectResponse;
 
 class ProductController extends Controller
 {
@@ -18,7 +19,8 @@ class ProductController extends Controller
 
     public function admin_index(): View
     {
-        return view("fireshop.admin");
+        $products = Product::all();
+        return view("fireshop.admin", compact("products"));
     }
 
     /**
@@ -32,9 +34,17 @@ class ProductController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(Request $request): RedirectResponse
     {
-        //
+        $validated = $request->validate([
+            'name' => 'required|string|max:255',
+            'price' => 'required|numeric',
+            'description' => 'required|string|max:10000',
+        ]);
+
+        $request->user()->products()->create($validated);
+
+        return redirect(route('admin'));
     }
 
     /**
@@ -48,24 +58,42 @@ class ProductController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Product $product)
+    public function edit(Product $product): View
     {
-        //
+        // $this->authorize('update', $product);
+
+        return view('fireshop.edit', [
+            'product' => $product,
+        ]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Product $product)
+    public function update(Request $request, Product $product): RedirectResponse
     {
-        //
+        // $this->authorize('update', $product);
+
+        $validated = $request->validate([
+            'name' => 'required|string|max:255',
+            'price' => 'required|numeric',
+            'description' => 'required|string|max:10000',
+        ]);
+
+        $product->update($validated);
+
+        return redirect(route('admin'));
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Product $product)
+    public function destroy(Product $product): RedirectResponse
     {
-        //
+        // $this->authorize('delete', $product);
+
+        $product->delete();
+
+        return redirect(route('admin'));
     }
 }
