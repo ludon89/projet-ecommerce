@@ -19,16 +19,16 @@ class ProductController extends Controller
 
     public function admin_index(): View
     {
-        $products = Product::all();
+        $products = Product::latest()->get();
         return view("fireshop.admin", compact("products"));
     }
 
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create(): View
     {
-        //
+        return view("fireshop.create");
     }
 
     /**
@@ -36,13 +36,23 @@ class ProductController extends Controller
      */
     public function store(Request $request): RedirectResponse
     {
-        $validated = $request->validate([
+        $this->validate($request, [
             'name' => 'required|string|max:255',
             'price' => 'required|numeric',
             'description' => 'required|string|max:10000',
+            'picture' => 'image|max:1024',
         ]);
 
-        $request->user()->products()->create($validated);
+        // dd($request);
+
+        $imgpath = $request->picture->store("products");
+
+        Product::create([
+            "name" => $request->name,
+            "price" => $request->price,
+            "description" => $request->description,
+            "picture" => $imgpath,
+        ]);
 
         return redirect(route('admin'));
     }
@@ -78,6 +88,7 @@ class ProductController extends Controller
             'name' => 'required|string|max:255',
             'price' => 'required|numeric',
             'description' => 'required|string|max:10000',
+            'picture' => 'image|max:1024',
         ]);
 
         $product->update($validated);

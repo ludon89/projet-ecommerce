@@ -15,7 +15,9 @@
             Produits
         </div>
         <div class="w-full text-gray-700 text-xl font-semibold">
-            Ajouter un produit
+            <a href="{{ route('products.create') }}">
+                Ajouter un produit
+            </a>
         </div>
         <hr>
         <br>
