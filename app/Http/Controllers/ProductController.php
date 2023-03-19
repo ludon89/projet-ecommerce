@@ -93,23 +93,22 @@ class ProductController extends Controller
             'description' => 'required|string|max:10000',
         ];
 
-        if ($request->has("picture")) {
-            $rules["picture"] = 'bail|required|image|max:1024';
-        };
+        if ($request->has('picture')) {
+            $rules['picture'] = 'image|max:1024';
+        }
 
         $this->validate($request, $rules);
 
-        if ($request->has("picture")) {
+        if ($request->has('picture')) {
             Storage::delete($product->picture);
-
-            $imgpath = $request->picture->store("products");
-        };
+            $imgpath = $request->picture->store('img');
+        }
 
         $product->update([
-            "name" => $request->name,
-            "price" => $request->price,
-            "description" => $request->description,
-            "picture" => isset($imgpath) ? $imgpath : $product->picture,
+            'name' => $request->title,
+            'price' => $request->price,
+            'description' => $request->description,
+            'picture' => isset($imgpath) ? $imgpath : $product->picture,
         ]);
 
         return redirect(route('admin'));
