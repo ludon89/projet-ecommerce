@@ -50,7 +50,7 @@ class ProductController extends Controller
             'picture' => 'image|max:1024',
         ]);
 
-        $imgpath = $request->picture->store("products");
+        $imgpath = Storage::putFile('img', $request->file('picture'));
 
         Product::create([
             "name" => $request->name,
