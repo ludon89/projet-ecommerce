@@ -1,6 +1,4 @@
-{{-- template navigation --}}
-
-{{-- <div class="container mx-auto px-6 py-3 "> --}}
+<div class="container mx-auto px-6 py-3 ">
     {{-- Navigation links --}}
     <nav :class="isOpen ? '' : 'hidden'" class="sm:flex sm:justify-around sm:items-center mt-4">
         <!-- Logo -->
@@ -11,35 +9,35 @@
         </div>
 
         <div class="flex flex-col sm:flex-row">
-            <x-nav-link :href="url('/home')">
+            <x-nav-link-header :href="url('/home')">
                 {{ __('Home') }}
-            </x-nav-link>
-            <x-nav-link :href="url('/home')">
+            </x-nav-link-header>
+            <x-nav-link-header :href="url('/home')">
                 {{ __('Catalogue') }}
-            </x-nav-link>
+            </x-nav-link-header>
 
             @guest
-                <x-nav-link :href="route('login')" :active="request()->routeIs('login')">
+                <x-nav-link-header :href="route('login')" :active="request()->routeIs('login')">
                     {{ __('Log In') }}
-                </x-nav-link>
+                </x-nav-link-header>
                    
-                <x-nav-link :href="route('register')" :active="request()->routeIs('register')">
+                <x-nav-link-header :href="route('register')" :active="request()->routeIs('register')">
                     {{ __('Register') }}
-                </x-nav-link>
+                </x-nav-link-header>
             @endguest
 
             {{-- Condition additionnelle sur l'authentification : si la personne connectée (user) est l'administrateur.rice ('is_admin' === 1),
             alors le menu "dashboard" s'affichera dans la barre de navigation. --}}
             {{-- @if(Auth::attempt(['is_admin' => 1]))
-                <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
+                <x-nav-link-header :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                     {{ __('Dashboard') }}
-                </x-nav-link>
+                </x-nav-link-header>
             @endif --}}
 
             @auth
-                <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
+                <x-nav-link-header :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                     {{ __('Dashboard') }}
-                </x-nav-link>
+                </x-nav-link-header>
             @endauth
 
         </div>
@@ -48,14 +46,13 @@
     {{-- Icons --}}
     <div class="flex items-center justify-between mx-10">
         <div class="flex items-center justify-end w-full">
-            {{-- @auth --}}
+            @auth
                 {{-- Profile icon --}}
                 <a class="text-yellow focus:outline-none mx-4 sm:mx-0" href={{route('profile.edit')}}>
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-10 h-10">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M17.982 18.725A7.488 7.488 0 0012 15.75a7.488 7.488 0 00-5.982 2.975m11.963 0a9 9 0 10-11.963 0m11.963 0A8.966 8.966 0 0112 21a8.966 8.966 0 01-5.982-2.275M15 9.75a3 3 0 11-6 0 3 3 0 016 0z" />
                     </svg>
                 </a>
-                
                 
                 {{-- Log out icon --}}
                 <!-- Authentication -->
@@ -71,7 +68,7 @@
                         </svg>                  
                     </a>
                 </form>
-            {{-- @endauth --}}
+            @endauth
             
             {{-- Cart icon --}}
             <button @click="cartOpen = !cartOpen" class="text-yellow focus:outline-none mx-4 sm:mx-0">

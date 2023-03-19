@@ -23,20 +23,19 @@
 
 <body class="font-sans antialiased bg-black">
     <div x-data="{ cartOpen: false, isOpen: false }">
-        <header>
-            @include('layouts.navigation');
+        <header class="rounded-b-lg border-yellow border-4">
+            @include('layouts.navigation')
         </header>
+
+        <main>
+            {{ $slot }}
+        </main>
+
+        <footer>
+            @include('layouts.footer')
+        </footer>
     </div>
-
-    <main>
-        {{ $slot }}
-    </main>
-
-    <footer>
-
-    </footer>
     
-
     <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js" defer></script>
 </body>
 
