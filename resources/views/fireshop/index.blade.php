@@ -18,14 +18,14 @@
                         Brand
                     </div>
                     <div class="flex items-center justify-end w-full">
-                        <button @click="cartOpen = !cartOpen" class="text-gray-600 focus:outline-none mx-4 sm:mx-0">
+                        {{-- <button @click="cartOpen = !cartOpen" class="text-gray-600 focus:outline-none mx-4 sm:mx-0">
                             <svg class="h-5 w-5" fill="none" stroke-linecap="round" stroke-linejoin="round"
                                  stroke-width="2" viewBox="0 0 24 24" stroke="currentColor">
                                 <path
                                       d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z">
                                 </path>
                             </svg>
-                        </button>
+                        </button> --}}
 
                         <div class="flex sm:hidden">
                             <button @click="isOpen = !isOpen" type="button"
@@ -63,7 +63,7 @@
                 </div>
             </div>
         </header>
-        <div :class="cartOpen ? 'translate-x-0 ease-out' : 'translate-x-full ease-in'"
+        {{-- <div :class="cartOpen ? 'translate-x-0 ease-out' : 'translate-x-full ease-in'"
              class="fixed right-0 top-0 max-w-xs w-full h-full px-6 py-4 transition duration-300 transform overflow-y-auto bg-white border-l-2 border-gray-300">
             <div class="flex items-center justify-between">
                 <h3 class="text-2xl font-medium text-gray-700">Your cart</h3>
@@ -170,7 +170,7 @@
                     <path d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
                 </svg>
             </a>
-        </div>
+        </div> --}}
         <main class="my-8">
             <div class="container mx-auto px-6">
                 <div class="md:flex md:items-center">
