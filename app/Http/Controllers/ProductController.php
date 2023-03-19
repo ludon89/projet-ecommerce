@@ -6,6 +6,7 @@ use App\Models\Product;
 use Illuminate\View\View;
 use Illuminate\Http\Request;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Support\Facades\Storage;
 
 class ProductController extends Controller
 {
@@ -82,16 +83,30 @@ class ProductController extends Controller
      */
     public function update(Request $request, Product $product): RedirectResponse
     {
-        // $this->authorize('update', $product);
-
-        $validated = $request->validate([
+        $rules = [
             'name' => 'required|string|max:255',
             'price' => 'required|numeric',
             'description' => 'required|string|max:10000',
-            'picture' => 'image|max:1024',
-        ]);
+        ];
 
-        $product->update($validated);
+        if ($request->has("picture")) {
+            $rules["picture"] = 'bail|required|image|max:1024';
+        };
+
+        $this->validate($request, $rules);
+
+        if ($request->has("picture")) {
+            Storage::delete($product->picture);
+
+            $imgpath = $request->picture->store("products");
+        };
+
+        $product->update([
+            "name" => $request->name,
+            "price" => $request->price,
+            "description" => $request->description,
+            "picture" => isset($imgpath) ? $imgpath : $product->picture,
+        ]);
 
         return redirect(route('admin'));
     }
