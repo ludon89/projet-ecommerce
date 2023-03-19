@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Product;
+use App\Models\User;
 use Illuminate\View\View;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Storage;
 
@@ -18,8 +20,12 @@ class ProductController extends Controller
         return view("fireshop.index");
     }
 
-    public function admin_index(): View
+    public function admin_index(User $user): View
     {
+        if (!Gate::allows('access-admin', $user)) {
+            abort(403);
+        }
+
         $products = Product::latest()->get();
         return view("fireshop.admin", compact("products"));
     }
