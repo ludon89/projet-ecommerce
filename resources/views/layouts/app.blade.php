@@ -12,6 +12,8 @@
     @vite('resources/css/app.css')
 </head>
 
+@include('layouts.navigation')
+
 <body class="font-sans antialiased">
     {{ $slot }}
 

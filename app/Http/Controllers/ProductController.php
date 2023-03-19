@@ -50,8 +50,6 @@ class ProductController extends Controller
             'picture' => 'image|max:1024',
         ]);
 
-        // dd($request);
-
         $imgpath = $request->picture->store("products");
 
         Product::create([
@@ -122,8 +120,6 @@ class ProductController extends Controller
      */
     public function destroy(Product $product): RedirectResponse
     {
-        // $this->authorize('delete', $product);
-
         $product->delete();
 
         return redirect(route('admin'));
