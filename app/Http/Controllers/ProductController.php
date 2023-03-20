@@ -33,8 +33,12 @@ class ProductController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create(): View
+    public function create(User $user): View
     {
+        if (!Gate::allows('access-admin', $user)) {
+            abort(403);
+        }
+
         return view("fireshop.create");
     }
 
@@ -73,9 +77,11 @@ class ProductController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Product $product): View
+    public function edit(Product $product, User $user): View
     {
-        // $this->authorize('update', $product);
+        if (!Gate::allows('access-admin', $user)) {
+            abort(403);
+        }
 
         return view('fireshop.edit', [
             'product' => $product,
