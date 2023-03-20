@@ -17,6 +17,9 @@
                     <label for="price">Prix :</label><br>
                     <input type="text" name="price" id="price" value="{{ old('price', $product->price) }}"
                            class="block w-full border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm">
+                    <label for="picture">Illustration :</label>
+                    <input type="file" name="picture" id="picture">
+                    <br>
                     <label for="description">Description :</label>
                     <textarea name="description" id="description" rows=5
                               class="block w-full border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm">{{ old('description', $product->description) }}</textarea>
