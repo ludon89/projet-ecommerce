@@ -56,7 +56,7 @@ class ProductController extends Controller
             "name" => $request->name,
             "price" => $request->price,
             "description" => $request->description,
-            "picture" => $imgpath,
+            "picture" => 'storage/' . $imgpath,
         ]);
 
         return redirect(route('admin'));
