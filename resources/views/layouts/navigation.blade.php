@@ -12,7 +12,7 @@
             <x-nav-link-header :href="route('index')">
                 {{ __('Home') }}
             </x-nav-link-header>
-            <x-nav-link-header :href="route('index')">
+            <x-nav-link-header :href="route('catalogue')">
                 {{ __('Catalogue') }}
             </x-nav-link-header>
 
@@ -28,7 +28,7 @@
 
             {{-- Condition additionnelle sur l'authentification : si la personne connectée (user) est l'administrateur.rice ('is_admin' === 1),
             alors le menu "dashboard" s'affichera dans la barre de navigation. --}}
-            {{-- @if (Auth::attempt(['is_admin' => 1]))
+            {{-- @if (Auth::user()->'is_admin')
                 <x-nav-link-header :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                     {{ __('Dashboard') }}
                 </x-nav-link-header>
