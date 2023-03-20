@@ -26,19 +26,21 @@
                 </x-nav-link-header>
             @endguest
 
-            {{-- Condition additionnelle sur l'authentification : si la personne connectée (user) est l'administrateur.rice ('is_admin' === 1),
-            alors le menu "dashboard" s'affichera dans la barre de navigation. --}}
-            {{-- @if (Auth::user()->'is_admin')
-                <x-nav-link-header :href="route('dashboard')" :active="request()->routeIs('dashboard')">
-                    {{ __('Dashboard') }}
-                </x-nav-link-header>
-            @endif --}}
 
             @auth
-                <x-nav-link-header :href="route('dashboard')" :active="request()->routeIs('dashboard')">
-                    {{ __('Dashboard') }}
-                </x-nav-link-header>
+                {{-- Condition additionnelle sur l'authentification : si la personne connectée (user) est l'administrateur.rice ('is_admin' === 1),
+            alors le menu "dashboard" s'affichera dans la barre de navigation. --}}
+                @if (Auth::user()->is_admin)
+                    <x-nav-link-header :href="route('admin')" :active="request()->routeIs('admin')">
+                        {{ __('Dashboard admin') }}
+                    </x-nav-link-header>
+                @else
+                    <x-nav-link-header :href="route('dashboard')" :active="request()->routeIs('dashboard')">
+                        {{ __('Dashboard') }}
+                    </x-nav-link-header>
+                @endif
             @endauth
+
 
         </div>
     </nav>
