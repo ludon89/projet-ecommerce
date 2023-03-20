@@ -13,24 +13,24 @@
                         <label for="name">Nom du produit :</label>
 
                         <input type="text" name="name" id="name" value=""
-                            class="block w-full border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm">
+                            class=" text-black block w-full border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm">
                     </div>
                     
                     <div class="m-2 py-2">
                         <label for="price">Prix :</label>
                         <input type="text" name="price" id="price" value=""
-                            class="block w-full border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm">
+                            class="text-black block w-full border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm">
                     </div>
                    
                     <div class="m-2 py-2">
                         <label for="picture">Illustration :</label>
-                        <input type="file" name="picture" id="picture">
+                        <input type="file" name="picture" id="picture" class="text-black">
                     </div>
                     
                     <div class="m-2 py-2">
                         <label for="description">Description :</label>
                         <textarea name="description" id="description" rows=5
-                            class="block w-full border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm"></textarea>
+                            class="text-black block w-full border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm"></textarea>
                         <x-input-error :messages="$errors->get('message')" class="mt-2" />
                     </div>
                     
@@ -42,7 +42,7 @@
                             Retour
                         </a>
                     </x-danger-button>
-                   
+
                 </form>
             </div>
         </div>
