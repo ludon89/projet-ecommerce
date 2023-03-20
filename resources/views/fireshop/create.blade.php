@@ -42,7 +42,6 @@
                             Retour
                         </a>
                     </x-danger-button>
-
                 </form>
             </div>
         </div>
