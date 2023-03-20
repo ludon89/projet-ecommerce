@@ -33,8 +33,12 @@ class ProductController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create(): View
+    public function create(User $user): View
     {
+        if (!Gate::allows('access-admin', $user)) {
+            abort(403);
+        }
+
         return view("fireshop.create");
     }
 
@@ -74,9 +78,11 @@ class ProductController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Product $product): View
+    public function edit(Product $product, User $user): View
     {
-        // $this->authorize('update', $product);
+        if (!Gate::allows('access-admin', $user)) {
+            abort(403);
+        }
 
         return view('fireshop.edit', [
             'product' => $product,
@@ -94,33 +100,23 @@ class ProductController extends Controller
             'description' => 'required|string|max:10000',
         ];
 
-        if ($request->hasFile('picture')) {
+        if ($request->has('picture')) {
             $rules['picture'] = 'image|max:1024';
         }
 
         $this->validate($request, $rules);
 
-        $imgpath = "";
-
-        if ($request->hasFile('picture')) {
-            $imgpath = Storage::putFile('img', $request->file('picture'));
-            if ($product->picture) {
-                Storage::delete($product->picture);
-            }
-        } else {
-            $imgpath = $product->picture;
+        if ($request->has('picture')) {
+            Storage::delete($product->picture);
+            $imgpath = $request->picture->store("img");
         }
 
-        // dd($imgpath);
-
-        $productData = [
+        $product->update([
             "name" => $request->name,
             "price" => $request->price,
             "description" => $request->description,
-            "picture" => $imgpath,
-        ];
-
-        $product->update($productData);
+            "picture" => isset($imgpath) ? $imgpath : $product->image,
+        ]);
 
         return redirect(route('admin'));
     }

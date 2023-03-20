@@ -23,6 +23,7 @@ use App\Http\Controllers\ProfileController;
 // Accueil
 Route::get('/', [ProductController::class, 'index'])->name('index');
 
+
 // Dashboard admin
 Route::get('/admin', [ProductController::class, 'admin_index'])
     // ->middleware(['auth', 'verified'])
@@ -49,10 +50,10 @@ Route::resource("products", ProductController::class);
 
 ///////////////////
 
-// Tests
-Route::get('/test', function () {
-    return view("test");
-})->name("test");
+// Catalague (tous les produits)
+Route::get('/catalogue', function () {
+    return view("fireshop.catalogue");
+})->name("catalogue");
 
 Route::resource("/show", CartController::class);
 Route::get('cart', "CartController@show")->name('cart.show');
