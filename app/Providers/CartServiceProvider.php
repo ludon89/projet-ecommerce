@@ -12,7 +12,10 @@ class CartServiceProvider extends ServiceProvider
     public function register(): void
     {
         //
-        $this->app->bind(CartInterfaceRepository::class, CartSessionRepository::class);
+        $this->app->bind(
+            'App\Http\Repositories\CartInterfaceRepository', 
+            'App\Http\Repositories\CartSessionRepository'
+        );
     }
 
     /**
