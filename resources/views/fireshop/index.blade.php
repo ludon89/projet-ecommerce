@@ -179,10 +179,10 @@
                             <img class="object-cover object-center rounded-xl" alt="hero" src="images/firework-tower.jpg">
                         </div>
             
-                        <div class="w-full flex gap-3 justify-center">
+                        {{-- <div class="w-full flex gap-3 justify-center">
                             <img class="object-cover object-center rounded-xl" alt="hero" src="images/firework-white-2.jpg">
                             <img class="object-cover object-center rounded-xl" alt="hero" src="images/firework-sparkle.jpg">
-                        </div>
+                        </div> --}}
                     </div>
                 </div>
             </section>
