@@ -16,9 +16,9 @@ use App\Http\Controllers\ProfileController;
 |
 */
 
-// Route::get('/', function () {
-//     return view('welcome');
-// });
+ Route::get('/', function () {
+     return view('product');
+});
 
 // Accueil
 Route::get('/', [ProductController::class, 'index'])->name('index');
@@ -54,6 +54,7 @@ Route::get('/test', function () {
     return view("test");
 })->name("test");
 
+Route::resource("cart", CartController::class);
 Route::get('cart', "CartController@show")->name('cart.show');
 Route::post('cart/add{product}', "CartController@add")->name('cart.add');
 Route::get('cart/remove{product}', "CartController@remove")->name('cart.remove');

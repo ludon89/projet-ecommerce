@@ -14,7 +14,7 @@ class ProductController extends Controller
      */
     public function index(): View
     {
-        return view("fireshop.index");
+        return view("products.product");
     }
 
     public function admin_index(): View
@@ -52,7 +52,7 @@ class ProductController extends Controller
      */
     public function show(Product $product)
     {
-        //
+        return view("products.product", compact("product"));
     }
 
     /**

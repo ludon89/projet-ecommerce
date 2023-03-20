@@ -2,7 +2,7 @@
 
 namespace App\Repositories;
 
-use App\Product;
+use App\Models\Product;
 
 class CartSessionRepository implements CartInterfaceRepository  {
 
@@ -13,7 +13,7 @@ class CartSessionRepository implements CartInterfaceRepository  {
 
 	# Ajouter/Mettre à jour un produit du panier
 	public function add (Product $product, $quantity) {		
-		$basket = session()->get("cart"); // On récupère le panier en session
+		$cart = session()->get("cart"); // On récupère le panier en session
 
 		// Les informations du produit à ajouter
 		$product_details = [
@@ -22,15 +22,15 @@ class CartSessionRepository implements CartInterfaceRepository  {
 			'quantity' => $quantity
 		];
 		
-		$basket[$product->id] = $product_details; // On ajoute ou on met à jour le produit au panier
-		session()->put("cart", $basket); // On enregistre le panier
+		$cart[$product->id] = $product_details; // On ajoute ou on met à jour le produit au panier
+		session()->put("cart", $cart); // On enregistre le panier
 	}
 
 	# Retirer un produit du panier
 	public function remove (Product $product) {
-		$basket = session()->get("cart"); // On récupère le panier en session
-		unset($basket[$product->id]); // On supprime le produit du tableau $basket
-		session()->put("cart", $basket); // On enregistre le panier
+		$cart = session()->get("cart"); // On récupère le panier en session
+		unset($cart[$product->id]); // On supprime le produit du tableau $basket
+		session()->put("cart", $cart); // On enregistre le panier
 	}
 
 	# Vider le panier
