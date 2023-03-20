@@ -1,6 +1,6 @@
 <x-app-layout>
 
-    <header>
+    <header class="text-white">
         <div class="container mx-auto px-6 py-3">
             <div class="flex items-center justify-between">
                 <div class="w-full text-gray-700 md:text-center text-2xl font-semibold">
@@ -10,7 +10,7 @@
         </div>
     </header>
 
-    <main class="my-8">
+    <main class="my-8 text-white">
         <div class="w-full text-gray-700 text-2xl font-semibold">
             Produits
         </div>
