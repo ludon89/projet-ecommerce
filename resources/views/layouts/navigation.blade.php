@@ -12,7 +12,7 @@
             <x-nav-link-header :href="route('index')">
                 {{ __('Home') }}
             </x-nav-link-header>
-            <x-nav-link-header :href="route('index')">
+            <x-nav-link-header :href="route('catalogue')">
                 {{ __('Catalogue') }}
             </x-nav-link-header>
 

@@ -22,10 +22,8 @@ use App\Http\Controllers\ProfileController;
 // Accueil
 Route::get('/', [ProductController::class, 'index'])->name('index');
 
-// Catalague (tous les produits)
-Route::get('/catalogue', function () {
-    return view('fireshop.catalogue');
-});
+
+
 
 // Dashboard admin
 Route::get('/admin', [ProductController::class, 'admin_index'])
@@ -53,9 +51,9 @@ Route::resource("products", ProductController::class);
 
 ///////////////////
 
-// Tests
-Route::get('/test', function () {
-    return view("test");
-})->name("test");
+// Catalague (tous les produits)
+Route::get('/catalogue', function () {
+    return view("fireshop.catalogue");
+})->name("catalogue");
 
 require __DIR__ . '/auth.php';
