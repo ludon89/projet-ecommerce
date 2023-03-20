@@ -15,13 +15,19 @@
             Produits
         </div>
         <div class="w-full text-gray-700 text-xl font-semibold">
-            Ajouter un produit
+            <a href="{{ route('products.create') }}">
+                Ajouter un produit
+            </a>
         </div>
         <hr>
         <br>
         @foreach ($products as $product)
-            <h2>{{ $product->name }}</h2>
-            <img src="{{ $product->picture }}" alt="image produit">
+            <h2>
+                <a href="{{ route('products.show', $product) }}">
+                    {{ $product->name }}
+                </a>
+            </h2>
+            <img src="{{ asset('storage/' . $product->picture) }}" alt="image produit">
             <p>{{ $product->description }}</p>
             <p>{{ $product->price }} €</p>
             <a href="{{ route('products.edit', $product->id) }}">Modifier</a>
