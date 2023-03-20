@@ -22,6 +22,11 @@ use App\Http\Controllers\ProfileController;
 // Accueil
 Route::get('/', [ProductController::class, 'index'])->name('index');
 
+// Catalague (tous les produits)
+Route::get('/catalogue', function () {
+    return view('catalogue');
+});
+
 // Dashboard admin
 Route::get('/admin', [ProductController::class, 'admin_index'])
     // ->middleware(['auth', 'verified'])
