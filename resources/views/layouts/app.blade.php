@@ -22,8 +22,6 @@
     @vite('resources/css/app.css', 'resources/js/app.js')
 </head>
 
-@include('layouts.navigation')
-
 <body class="font-sans antialiased bg-black">
     <div x-data="{ cartOpen: false, isOpen: false }">
         <header class="rounded-b-lg border-yellow border-4">

@@ -9,10 +9,10 @@
         </div>
 
         <div class="flex flex-col sm:flex-row">
-            <x-nav-link-header :href="url('/home')">
+            <x-nav-link-header :href="route('index')">
                 {{ __('Home') }}
             </x-nav-link-header>
-            <x-nav-link-header :href="url('/home')">
+            <x-nav-link-header :href="route('index')">
                 {{ __('Catalogue') }}
             </x-nav-link-header>
 
