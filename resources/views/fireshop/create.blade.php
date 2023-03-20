@@ -12,16 +12,16 @@
                     @csrf
                     <label for="name">Nom :</label><br>
                     <input type="text" name="name" id="name" value=""
-                           class="block w-full border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm">
+                           class="block w-full border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm text-black">
                     <label for="price">Prix :</label><br>
                     <input type="text" name="price" id="price" value=""
-                           class="block w-full border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm">
+                           class="block w-full border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm text-black">
                     <label for="picture">Illustration :</label>
                     <input type="file" name="picture" id="picture">
                     <br>
                     <label for="description">Description :</label>
                     <textarea name="description" id="description" rows=5
-                              class="block w-full border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm"></textarea>
+                              class="block w-full border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm text-black"></textarea>
                     <x-input-error :messages="$errors->get('message')" class="mt-2" />
                     <x-primary-button class="mt-4">{{ __('Publier') }}</x-primary-button>
                     <a href="{{ route('admin') }}">Retour</a>
