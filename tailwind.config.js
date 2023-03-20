@@ -11,7 +11,14 @@ module.exports = {
     theme: {
         extend: {
             fontFamily: {
-                sans: ['Figtree', ...defaultTheme.fontFamily.sans],
+                sans: ['Lato', 'Helvetica', 'Arial', 'sans-serif'],
+                display: ['Baumans'],
+            },
+
+            colors: {
+                'yellow': '#FFD60A',
+                'green': '#c2e812',
+                'red': '#ff331f',
             },
         },
     },
