@@ -14,7 +14,7 @@ class ProductController extends Controller
      */
     public function index(): View
     {
-        return view("products.product");
+        return view("fireshop.index");
     }
 
     public function admin_index(): View
