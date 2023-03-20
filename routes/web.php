@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\CartController;
 use App\Http\Controllers\ProfileController;
 
 /*
@@ -15,9 +16,9 @@ use App\Http\Controllers\ProfileController;
 |
 */
 
-// Route::get('/', function () {
-//     return view('welcome');
-// });
+Route::get('/cart', function () {
+     return view('cart.show');
+});
 
 // Accueil
 Route::get('/', [ProductController::class, 'index'])->name('index');
@@ -54,4 +55,10 @@ Route::get('/catalogue', function () {
     return view("fireshop.catalogue");
 })->name("catalogue");
 
+//Route::resource("/show", CartController::class);
+//Route::get('cart', "CartController@show")->name('cart.show');
+Route::post('cart/add{product}', "CartController@add")->name('cart.add');
+Route::get('cart/remove{product}', "CartController@remove")->name('cart.remove');
+Route::get('cart/empty', "CartController@empty")->name('cart.empty');
+Route::get('/cart', [CartController::class, 'show'])->name('cart.show');
 require __DIR__ . '/auth.php';
