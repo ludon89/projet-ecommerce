@@ -54,7 +54,7 @@ Route::get('/test', function () {
     return view("test");
 })->name("test");
 
-Route::resource("/", CartController::class);
+Route::resource("/show", CartController::class);
 Route::get('cart', "CartController@show")->name('cart.show');
 Route::post('cart/add{product}', "CartController@add")->name('cart.add');
 Route::get('cart/remove{product}', "CartController@remove")->name('cart.remove');
