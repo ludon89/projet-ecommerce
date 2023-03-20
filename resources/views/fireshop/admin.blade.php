@@ -27,7 +27,7 @@
                     {{ $product->name }}
                 </a>
             </h2>
-            <img src="{{ asset($product->picture) }}" alt="image produit">
+            <img src="{{ asset('storage/' . $product->picture) }}" alt="image produit">
             <p>{{ $product->description }}</p>
             <p>{{ $product->price }} €</p>
             <a href="{{ route('products.edit', $product->id) }}">Modifier</a>

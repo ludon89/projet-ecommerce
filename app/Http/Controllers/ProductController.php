@@ -56,7 +56,7 @@ class ProductController extends Controller
             "name" => $request->name,
             "price" => $request->price,
             "description" => $request->description,
-            "picture" => 'storage/' . $imgpath,
+            "picture" => $imgpath,
         ]);
 
         return redirect(route('admin'));
@@ -93,23 +93,33 @@ class ProductController extends Controller
             'description' => 'required|string|max:10000',
         ];
 
-        if ($request->has('picture')) {
+        if ($request->hasFile('picture')) {
             $rules['picture'] = 'image|max:1024';
         }
 
         $this->validate($request, $rules);
 
-        if ($request->has('picture')) {
-            Storage::delete($product->picture);
-            $imgpath = $request->picture->store('img');
+        $imgpath = "";
+
+        if ($request->hasFile('picture')) {
+            $imgpath = Storage::putFile('img', $request->file('picture'));
+            if ($product->picture) {
+                Storage::delete($product->picture);
+            }
+        } else {
+            $imgpath = $product->picture;
         }
 
-        $product->update([
-            'name' => $request->title,
-            'price' => $request->price,
-            'description' => $request->description,
-            'picture' => isset($imgpath) ? $imgpath : $product->picture,
-        ]);
+        // dd($imgpath);
+
+        $productData = [
+            "name" => $request->name,
+            "price" => $request->price,
+            "description" => $request->description,
+            "picture" => $imgpath,
+        ];
+
+        $product->update($productData);
 
         return redirect(route('admin'));
     }
