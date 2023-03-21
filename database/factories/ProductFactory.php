@@ -22,7 +22,7 @@ class ProductFactory extends Factory
             "name" => fake()->word(),
             "price" => fake()->numberBetween(100, 1000),
             "description" => fake()->paragraph(),
-            "picture" => "img/placeholder.jpg",
+            "picture" => "img/firework-heart.jpg",
         ];
     }
 }

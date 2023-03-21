@@ -17,7 +17,7 @@ use App\Http\Controllers\ProfileController;
 */
 
 Route::get('/cart', function () {
-     return view('cart.show');
+    return view('cart.show');
 });
 
 // Accueil
@@ -62,3 +62,11 @@ Route::get('cart/remove{product}', "CartController@remove")->name('cart.remove')
 Route::get('cart/empty', "CartController@empty")->name('cart.empty');
 Route::get('/cart', [CartController::class, 'show'])->name('cart.show');
 require __DIR__ . '/auth.php';
+
+
+
+/////////////////// TESTS ///////////////////
+
+Route::get("/test", function () {
+    return view("test");
+});
