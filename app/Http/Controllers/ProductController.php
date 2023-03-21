@@ -72,6 +72,7 @@ class ProductController extends Controller
     public function show(Product $product): View
     {
         return view("fireshop.show", compact("product"));
+        
     }
 
     /**
