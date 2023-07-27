@@ -28,7 +28,7 @@
             </h2>
 
             {{-- Picture --}}
-            <img src="{{ asset('storage/' . $product->picture) }}" alt="image produit" class="my-2">
+            <img src="{{ asset('storage/app/' . $product->picture) }}" alt="image produit" class="my-2">
 
             {{-- Description --}}
             <p class="my-2">{{ $product->description }}</p>

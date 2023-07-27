@@ -3,7 +3,7 @@
     <div class="container text-white mx-auto px-5 py-5">
       <div class="max-w-5xl mx-auto p-4 sm:p-6 lg:p-8 text-white">
         <h1 class="font-semibold text-3xl font-display text-yellow">
-          Modifier un article
+          Ajouter un article
         </h1>
 
         <form method="POST" action="{{ route('products.store') }}" enctype="multipart/form-data">
@@ -13,13 +13,13 @@
             <label for="name">Nom du produit :</label>
 
             <input type="text" name="name" id="name" value=""
-                   class="block w-full border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm">
+                   class="block w-full border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm text-black">
           </div>
 
           <div class="m-2 py-2">
             <label for="price">Prix :</label>
             <input type="text" name="price" id="price" value=""
-                   class="block w-full border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm">
+                   class="block w-full border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm text-black">
           </div>
 
           <div class="m-2 py-2">
@@ -30,7 +30,7 @@
           <div class="m-2 py-2">
             <label for="description">Description :</label>
             <textarea name="description" id="description" rows=5
-                      class="block w-full border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm"></textarea>
+                      class="block w-full border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm text-black"></textarea>
             <x-input-error :messages="$errors->get('message')" class="mt-2" />
           </div>
 

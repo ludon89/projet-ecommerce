@@ -30,6 +30,12 @@ class ProductController extends Controller
         return view("fireshop.admin", compact("products"));
     }
 
+    public function catalogue_index(): View
+    {
+        $products = Product::latest()->get();
+        return view("fireshop.catalogue", compact("products"));
+    }
+
     /**
      * Show the form for creating a new resource.
      */
@@ -54,7 +60,7 @@ class ProductController extends Controller
             'picture' => 'image|max:1024',
         ]);
 
-        $imgpath = Storage::putFile('img', $request->file('picture'));
+        $imgpath = Storage::putFile('images', $request->file('picture'));
 
         Product::create([
             "name" => $request->name,
@@ -72,7 +78,7 @@ class ProductController extends Controller
     public function show(Product $product): View
     {
         return view("fireshop.show", compact("product"));
-        
+
     }
 
     /**
@@ -108,7 +114,7 @@ class ProductController extends Controller
 
         if ($request->has('picture')) {
             Storage::delete($product->picture);
-            $imgpath = $request->picture->store("img");
+            $imgpath = $request->picture->store("images");
         }
 
         $product->update([
