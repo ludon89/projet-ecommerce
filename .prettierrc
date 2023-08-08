@@ -1,0 +1,15 @@
+{
+  "plugins": ["@shufo/prettier-plugin-blade"],
+  "printWidth": 80,
+  "tabWidth": 2,
+  "bracketSameLine": true,
+  "overrides": [
+    {
+      "files": ["*.blade.php"],
+      "options": {
+        "parser": "blade",
+        "bracketSameLine": false
+      }
+    }
+  ]
+}
