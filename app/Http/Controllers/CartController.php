@@ -31,9 +31,12 @@ class CartController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(Cart $cart)
     {
-        //
+        $cart = Cart::where('user_id', '=', $cart->user_id)->get();
+        dd($cart);
+
+        return view('carts.show', compact('cart'));
     }
 
     /**

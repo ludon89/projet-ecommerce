@@ -28,11 +28,6 @@ Route::get('/admin', [ProductController::class, 'admin_index'])
 Route::get('/catalogue', [ProductController::class, 'catalogue_index'])
     ->name("catalogue");
 
-// Affichage panier
-Route::get('/cart', function () {
-    return view('cart.show');
-})->middleware(['auth']);
-
 
 
 ///////////////////
@@ -75,5 +70,10 @@ Route::resource("carts", CartController::class);
 Route::get("/test", function () {
     return view("test");
 });
+
+Route::get('/cart', function () {
+    return view('cart.show');
+})->middleware(['auth']);
+
 
 require __DIR__ . '/auth.php';

@@ -6,72 +6,55 @@
       <div class="alert alert-info">{{ session('message') }}</div>
     @endif
 
-    <h1>Mon panier</h1>
-    <div class="table-responsive shadow mb-3">
-      <table class="table table-bordered table-hover bg-white mb-0">
-        <thead class="thead-dark">
-          <tr>
-            <th>#</th>
-            <th>Produit</th>
-            <th>Prix</th>
-            <th>Quantité</th>
-            <th>Total</th>
-            <th>Opérations</th>
-          </tr>
-        </thead>
-        <tbody>
-          <!-- Initialisation du total général à 0 -->
-          @php $total = 0 @endphp
+    <h1 class="text-white">Mon panier</h1>
+    <div class="flex justify-between text-white">
+      <h2 class="font-semibold text-2xl">
+        Votre panier
+      </h2>
+    </div>
+    <div class="my-8 text-white">
+      <hr>
+      <br>
+      {{-- @foreach ($products as $product) --}}
+      {{-- Product's name --}}
+      <h2 class="font-display text-xl font-semibold mb-2">
+        <a href="">
+          Nom du produit
+        </a>
+      </h2>
 
-          <!-- On parcourt les produits du panier en session : session('cart') -->
-          @foreach (session('cart') as $key => $item)
-            <!-- On incrémente le total général par le total de chaque produit du panier -->
-            @php $total += $item['price'] * $item['quantity'] @endphp
-            <tr>
-              <td>{{ $loop->iteration }}</td>
-              <td>
-                <strong><a href="{{ route('product.show', $key) }}"
-                    title="Afficher le produit">{{ $item['name'] }}</a></strong>
-              </td>
-              <td>{{ $item['price'] }} $</td>
-              <td>
-                <!-- Le formulaire de mise à jour de la quantité -->
-                <form method="POST" action="{{ route('cart.add', $key) }}"
-                  class="form-inline d-inline-block">
-                  {{ csrf_field() }}
-                  <input type="number" name="quantity" placeholder="Quantité ?"
-                    value="{{ $item['quantity'] }}" class="form-control mr-2"
-                    style="width: 80px">
-                  <input type="submit" class="btn btn-primary"
-                    value="Actualiser" />
-                </form>
-              </td>
-              <td>
-                <!-- Le total du produit = prix * quantité -->
-                {{ $item['price'] * $item['quantity'] }} $
-              </td>
-              <td>
-                <!-- Le Lien pour retirer un produit du panier -->
-                <a href="{{ route('cart.remove', $key) }}"
-                  class="btn btn-outline-danger"
-                  title="Retirer le produit du panier">Retirer</a>
-              </td>
-            </tr>
-          @endforeach
-          <tr colspan="2">
-            <td colspan="4">Total général</td>
-            <td colspan="2">
-              <!-- On affiche total général -->
-              <strong>{{ $total }} $</strong>
-            </td>
-          </tr>
-        </tbody>
+      {{-- Picture --}}
+      <img src="" alt="image produit" class="my-2">
 
-      </table>
+      {{-- Description --}}
+      <p class="my-2">Description du produit</p>
+
+      {{-- Prices --}}
+      <p class="font-bold text-xl my-2">Prix unitaire</p>
+
+      <div class="flex justify-end">
+        {{-- Update button --}}
+        <x-primary-button class="mx-1">
+          <a href="">Modifier</a>
+        </x-primary-button>
+
+        {{-- Delete button --}}
+        <form method="POST" action="">
+          @csrf
+          @method('DELETE')
+          <x-danger-button class="mx-1">
+            <a href=""
+              onclick="event.preventDefault(); this.closest('form').submit();">Supprimer</a>
+          </x-danger-button>
+        </form>
+      </div>
+      <br>
+      <hr>
+      {{-- @endforeach --}}
     </div>
 
     <!-- Lien pour vider le panier -->
-    <a class="btn btn-danger" href="{{ route('cart.empty') }}"
+    <a class="btn btn-danger text-white" href="#"
       title="Retirer tous les produits du panier">Vider le panier</a>
 
     {{-- <div class="alert alert-info">Aucun produit au panier</div> --}}
