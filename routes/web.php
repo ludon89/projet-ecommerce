@@ -16,10 +16,6 @@ use App\Http\Controllers\ProfileController;
 |
 */
 
-Route::get('/cart', function () {
-    return view('cart.show');
-});
-
 // Accueil
 Route::get('/', [ProductController::class, 'index'])->name('index');
 
@@ -31,6 +27,12 @@ Route::get('/admin', [ProductController::class, 'admin_index'])
 // Catalague (tous les produits)
 Route::get('/catalogue', [ProductController::class, 'catalogue_index'])
     ->name("catalogue");
+
+// Affichage panier
+Route::get('/cart', function () {
+    return view('cart.show');
+})->middleware(['auth']);
+
 
 
 ///////////////////
@@ -48,22 +50,23 @@ Route::middleware('auth')->group(function () {
 });
 
 
+
 ///////////////////
 
 // Routes ressources
 Route::resource("products", ProductController::class);
+Route::resource("carts", CartController::class);
+
 
 
 ///////////////////
 
 //Route::resource("/show", CartController::class);
 //Route::get('cart', "CartController@show")->name('cart.show');
-Route::post('cart/add{product}', "CartController@add")->name('cart.add');
-Route::get('cart/remove{product}', "CartController@remove")->name('cart.remove');
-Route::get('cart/empty', "CartController@empty")->name('cart.empty');
-Route::get('/cart', [CartController::class, 'show'])->name('cart.show');
-require __DIR__ . '/auth.php';
-
+// Route::post('cart/add{product}', "CartController@add")->name('cart.add');
+// Route::get('cart/remove{product}', "CartController@remove")->name('cart.remove');
+// Route::get('cart/empty', "CartController@empty")->name('cart.empty');
+// Route::get('/cart', [CartController::class, 'show'])->name('cart.show');
 
 
 
@@ -72,3 +75,5 @@ require __DIR__ . '/auth.php';
 Route::get("/test", function () {
     return view("test");
 });
+
+require __DIR__ . '/auth.php';

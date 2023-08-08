@@ -27,7 +27,6 @@
         </x-nav-link-header>
       @endguest
 
-
       @auth
         {{-- Condition additionnelle sur l'authentification : si la personne connectée (user) est l'administrateur.rice ('is_admin' === 1),
             alors le menu "dashboard" s'affichera dans la barre de navigation. --}}
@@ -41,7 +40,6 @@
           </x-nav-link-header>
         @endif
       @endauth
-
 
     </div>
   </nav>
@@ -81,7 +79,7 @@
 
       {{-- Cart icon --}}
       <button class="text-yellow focus:outline-none mx-4 sm:mx-0">
-        <a href="{{ route('cart.show') }}">
+        <a href="#">
           <svg class="h-9 w-9" fill="none" stroke-linecap="round"
             stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24"
             stroke="currentColor">
