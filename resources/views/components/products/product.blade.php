@@ -20,17 +20,22 @@
           </a>
         </x-primary-button>
 
-        <div class="bg-white mt-3 p-3 border text-center">
-          <p>Commander <strong>{{ $product->name }}</strong></p>
-          <form method="" action="#"
-            class="form-inline d-inline-block">
-            {{ csrf_field() }}
-            <input type="number" name="quantity" placeholder="Quantité ?"
-              class="form-control mr-2" value="#">
-            <button type="submit" class="btn btn-warning">+ Ajouter au
-              panier</button>
-          </form>
-        </div>
+        @auth
+          <div class="bg-white mt-3 p-3 border text-center">
+            <p>Commander <strong>{{ $product->name }}</strong></p>
+            <form method="POST"
+              action="{{ route('carts.store', ['user' => Auth::user()->id, 'product' => $product->id]) }}"
+              class="form-inline d-inline-block">
+              @csrf
+              <input type="number" min="1" name="quantity"
+                placeholder="Quantité ?" class="form-control mr-2" value="1">
+              <button type="submit" class="btn btn-warning">+ Ajouter au
+                panier</button>
+              <x-input-error :messages="$errors->all()" class="mt-2" /><br>
+              {{-- <p>{{ session()->get('message') }}</p> --}}
+            </form>
+          </div>
+        @endauth
 
       </div>
     </div>
