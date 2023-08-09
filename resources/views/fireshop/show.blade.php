@@ -1,9 +1,9 @@
 <x-app-layout>
   <x-slot name="slot">
     <div
-      class="container text-white border-4 border-yellow rounded-lg p-10 m-10">
+      class="container m-10 rounded-lg border-4 border-yellow p-10 text-white">
       {{-- Product's name --}}
-      <h1 class="font-display text-3xl font-semibold mb-2">
+      <h1 class="mb-2 font-display text-3xl font-semibold">
         {{ $product->name }}
       </h1>
 
@@ -40,7 +40,7 @@
       @endauth
 
       <x-primary-button>
-        <a href="{{ route('admin') }}">
+        <a href="{{ route('catalogue') }}">
           Retour
         </a>
       </x-primary-button>
